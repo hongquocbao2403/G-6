@@ -6,14 +6,11 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Hiển thị trang dashboard.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index()
+    public function userDashboard()
     {
-        // Trả về view 'dashboard'
-        return view('admin.dashboard');  // Kiểm tra tên view trong resources/views
+        return view('admin.dashboard'); // Đảm bảo có file resources/views/admin/dashboard.blade.php
     }
 }
+
+
+

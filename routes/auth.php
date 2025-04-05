@@ -57,6 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
     Route::middleware(['auth'])->get('/admin'), function () {
-        return view('admin.dashboard'); // Bạn có thể thay đổi tên view nếu cần
+       return view('admin.dashboard'); // Bạn có thể thay đổi tên view nếu cần
     }
 });

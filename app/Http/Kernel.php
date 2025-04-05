@@ -26,6 +26,14 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
+        ]
+    ]
+    protected $routeMiddleware = [
+        // các middleware khác
+        'admin' => \App\Http\Middleware\AdminMiddleware::class, // Đăng ký middleware admin
+    ];
+    protected $routeMiddleware = [
+        // Các middleware khác
+        'admin.type' => \App\Http\Middleware\AdminTypeMiddleware::class,
     ];
 }

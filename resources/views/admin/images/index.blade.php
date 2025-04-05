@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Người Dùng</title>
+    <title>Thư Viện Ảnh</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 </head>
@@ -21,12 +21,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.users.index') }}" class="flex items-center py-3 px-4 bg-indigo-600 rounded-lg">
+                        <a href="{{ route('admin.users.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
                             <i class="fas fa-users mr-3"></i> Người dùng
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('images.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                        <a href="{{ route('images.index') }}" class="flex items-center py-3 px-4 bg-indigo-600 rounded-lg">
                             <i class="fas fa-image mr-3"></i> Thư viện ảnh
                         </a>
                     </li>
@@ -38,8 +38,8 @@
                 </ul>
             </div>
             <div>
-                <a href="{{ route('users.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full block text-center mb-4">
-                    <i class="fas fa-plus"></i> Thêm Người Dùng
+                <a href="{{ route('admin.images.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full block text-center mb-4">
+                    <i class="fas fa-plus"></i> Thêm Ảnh
                 </a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
@@ -52,41 +52,37 @@
 
         <!-- Main content -->
         <div class="flex-1 p-8">
-            <h1 class="text-3xl font-bold mb-6">Danh Sách Người Dùng</h1>
+            <h1 class="text-3xl font-bold mb-6">Thư Viện Ảnh</h1>
 
             <div class="bg-white p-6 rounded-lg shadow-lg">
+                <!-- Thông báo thành công -->
+                @if(session('success'))
+                    <div class="bg-green-500 text-white p-4 mb-4 rounded-lg">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <!-- Bảng hiển thị ảnh -->
                 <table class="min-w-full bg-white border border-gray-300 mb-6">
-                    <thead>
-                        <tr class="bg-gray-200">
-                            <th class="px-4 py-2 border">ID</th>
-                            <th class="px-4 py-2 border">Tên</th>
-                            <th class="px-4 py-2 border">Email</th>
-                            <th class="px-4 py-2 border">Loại Tài Khoản</th> <!-- Thêm cột Loại Tài Khoản -->
-                            <th class="px-4 py-2 border">Hành Động</th>
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="px-6 py-4 text-left font-medium text-gray-700">Ảnh</th>
+                            <th class="px-6 py-4 text-left font-medium text-gray-700">Phong Cách</th>
+                            <th class="px-6 py-4 text-left font-medium text-gray-700">Hành động</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($users as $user)
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-2 border">{{ $user->id }}</td>
-                                <td class="px-4 py-2 border">{{ $user->name }}</td>
-                                <td class="px-4 py-2 border">{{ $user->email }}</td>
-                                <td class="px-4 py-2 border">
-                                    <!-- Kiểm tra vai trò và hiển thị -->
-                                    @if($user->role == 'admin')
-                                        <span class="text-green-500">Admin</span>
-                                    @else
-                                        <span class="text-blue-500">User</span>
-                                    @endif
+                    <tbody class="text-gray-700">
+                        @foreach($images as $image)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 border-b">
+                                    <img src="{{ asset('storage/' . $image->file_path) }}" width="120" class="rounded-lg shadow-md">
                                 </td>
-                                <td class="px-4 py-2 border flex space-x-2">
-                                    <a href="{{ route('users.edit', $user->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded-lg">
-                                        <i class="fas fa-edit"></i> Sửa
-                                    </a>
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
+                                <td class="px-6 py-4 border-b">{{ $image->style->name }}</td>
+                                <td class="px-6 py-4 border-b text-center">
+                                    <form action="{{ route('admin.images.destroy', $image->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg">
+                                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 transform hover:scale-105 shadow-lg">
                                             <i class="fas fa-trash"></i> Xóa
                                         </button>
                                     </form>

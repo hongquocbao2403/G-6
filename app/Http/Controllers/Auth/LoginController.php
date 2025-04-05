@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,27 +17,41 @@ class LoginController extends Controller
     // Xử lý đăng nhập
     public function login(Request $request)
     {
+        // Validate dữ liệu đầu vào
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Lấy thông tin đăng nhập
         $credentials = $request->only('email', 'password');
 
+        // Kiểm tra thông tin đăng nhập
         if (Auth::attempt($credentials)) {
             // Đăng nhập thành công
-            return redirect()->intended('dashboard');
+            // Kiểm tra nếu user là admin thì chuyển hướng đến admin dashboard
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.dashboard'); // Route của admin dashboard
+            }
+            // Nếu không phải admin, chuyển hướng đến user dashboard
+            return redirect()->route('user.dashboard_2'); // Route của user dashboard
         }
 
-        // Đăng nhập không thành công
-        return back()->withErrors([
-            'email' => 'Thông tin đăng nhập không đúng.',
-        ]);
+        // Đăng nhập thất bại
+        return redirect()->route('login')->with('error', 'Thông tin đăng nhập không chính xác.');
     }
 
     // Xử lý đăng xuất
     public function logout(Request $request)
-{
-    Auth::logout(); // Đăng xuất người dùng
-    $request->session()->invalidate(); // Xóa session
-    $request->session()->regenerateToken(); // Tạo lại token CSRF
+    {
+        // Thực hiện logout
+        Auth::logout();
 
-    // Chuyển hướng người dùng về trang đăng nhập
-    return redirect()->route('login');
-}
+        // Xóa thông tin phiên đăng nhập
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Chuyển hướng về trang đăng nhập
+        return redirect()->route('login');
+    }
 }
