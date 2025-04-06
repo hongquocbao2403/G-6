@@ -31,14 +31,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('file.upload') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-dollar-sign mr-3"></i> Doanh thu
+                        <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng ký VIP
                         </a>
                     </li>
                 </ul>
             </div>
             <div>
-                <a href="{{ route('admin.images.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full block text-center mb-4">
+                <a href="{{ route('images.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full block text-center mb-4">
                     <i class="fas fa-plus"></i> Thêm Ảnh
                 </a>
                 <form action="{{ route('logout') }}" method="POST">
@@ -94,6 +94,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>

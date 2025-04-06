@@ -8,32 +8,51 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
+    // Hiển thị danh sách ảnh
     public function index()
     {
-        $images = Image::all();
+        $images = Image::with('style')->orderBy('created_at', 'desc')->get();
         return view('admin.images.index', compact('images'));
     }
 
-    public function create($adminId = null)  // Cho phép adminId có thể null
+    // Tạo ảnh mới
+    public function create()
     {
-        if (!$adminId) {
-            $adminId = auth()->id();  // Lấy ID của admin hiện tại nếu không có
-        }
-
+        $adminId = auth()->id();
         $styles = Style::all();
         return view('admin.images.create', compact('adminId', 'styles'));
     }
 
-    public function destroy($adminId, $id)
+    // Xóa ảnh
+    public function destroy($id)
     {
         $image = Image::findOrFail($id);
         $image->delete();
 
-        return redirect()->route('admin.images.index', ['adminId' => $adminId])
+        return redirect()->route('images.index')
                          ->with('success', 'Xóa ảnh thành công!');
     }
+
+    // Lưu ảnh vào cơ sở dữ liệu
+    public function store(Request $request)
+    {
+        // Validate dữ liệu
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'style_id' => 'required|exists:styles,id',
+            'file' => 'required|image',
+        ]);
+
+        // Lưu ảnh vào thư mục public và lấy đường dẫn
+        $filePath = $request->file('file')->store('images', 'public');
+
+        // Tạo ảnh mới và lưu vào database
+        $image = Image::create([
+            'name' => $request->name,
+            'style_id' => $request->style_id,
+            'file_path' => $filePath,
+        ]);
+        return redirect()->route('images.index', ['adminId' => auth()->id()])
+                 ->with('success', 'Ảnh đã được thêm thành công');
+    }
 }
-
-
-
-

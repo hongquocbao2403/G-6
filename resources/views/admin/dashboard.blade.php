@@ -52,8 +52,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('file.upload') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-dollar-sign mr-3"></i> Doanh thu
+                        <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng ký VIP
                         </a>
                     </li>
                 </ul>

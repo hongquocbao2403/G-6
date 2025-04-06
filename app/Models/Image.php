@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $fillable = [
-        'name', 'path', // tùy theo cột trong bảng của bạn
+        'name',
+        'file_path',
+        'style_id', // thêm style_id nếu đang dùng
     ];
+    public function style()
+    {
+        return $this->belongsTo(Style::class);
+    }
 }
