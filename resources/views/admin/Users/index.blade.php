@@ -38,7 +38,7 @@
                 </ul>
             </div>
             <div>
-                <a href="{{ route('users.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full block text-center mb-4">
+                <a href="{{ route('admin.users.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full block text-center mb-4">
                     <i class="fas fa-plus"></i> Thêm Người Dùng
                 </a>
                 <form action="{{ route('logout') }}" method="POST">

@@ -7,53 +7,51 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    // Phương thức này hiển thị form tạo người dùng
+    public function dashboard_2()
+    {
+        return view('user.dashboard_2');  // Hoặc tên view khác nếu cần
+    }
+    // Hiển thị form tạo người dùng
     public function create()
     {
-        return view('admin.users.create');  // Đảm bảo bạn có file view này
+        return view('admin.users.create');
     }
 
-    // Phương thức index (danh sách người dùng)
+    // Danh sách người dùng
     public function index()
     {
-        // Lấy danh sách người dùng
-        $users = User::all();
+        $users = User::all(); // Lấy tất cả người dùng
         return view('admin.users.index', compact('users'));
     }
 
-    // Phương thức cho trang dashboard_2
-    public function dashboard_2()
-    {
-        return view('user.dashboard_2'); // Đảm bảo bạn có file view này
-    }
-
-    // Phương thức store (lưu người dùng mới)
+    // Lưu người dùng mới
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:user,admin', // Kiểm tra role là user hoặc admin
         ]);
 
-        // Tạo người dùng mới
+    // Tạo người dùng mới
         User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
+            'role' => $validated['role'],
         ]);
-
         return redirect()->route('users.index');
     }
 
-    // Phương thức edit (hiển thị form chỉnh sửa người dùng)
+    // Chỉnh sửa người dùng
     public function edit($id)
     {
-        $user = User::findOrFail($id);  // Tìm người dùng theo ID
-        return view('admin.users.edit', compact('user'));  // Đảm bảo bạn có file view này
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
     }
 
-    // Phương thức update (cập nhật thông tin người dùng)
+    // Cập nhật thông tin người dùng
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -67,15 +65,15 @@ class UserController extends Controller
             'email' => $validated['email'],
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Người dùng đã được cập nhật!');
     }
 
-    // Phương thức destroy (xóa người dùng)
+    // Xóa người dùng
     public function destroy($id)
     {
-        $user = User::findOrFail($id);  // Tìm người dùng theo ID
-        $user->delete();  // Xóa người dùng
+        $user = User::findOrFail($id);
+        $user->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Người dùng đã bị xóa!');
     }
 }

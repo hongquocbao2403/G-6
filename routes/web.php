@@ -12,6 +12,8 @@ use App\Http\Controllers\AdminControllerTwo;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StyleController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\PostController;
+
 
 Route::middleware(['auth', 'admin'])->prefix('admin/second')->name('admin.second.')->group(function () {
     Route::get('/dashboard', [AdminControllerTwo::class, 'dashboard'])->name('dashboard');
@@ -61,6 +63,7 @@ Route::get('users', [UserController::class, 'index'])->name('users.index');
 
 // Route lưu người dùng mới
 Route::post('users', [UserController::class, 'store'])->name('users.store');
+Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
 
 // Route hiển thị form chỉnh sửa người dùng
 Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
@@ -208,12 +211,6 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
 // Route để hiển thị danh sách trang (index)
-Route::get('/pages', [PageController::class, 'index'])->name('page.index');
-// Route hiển thị danh sách bài viết (index)
-Route::get('/posts', [PostController::class, 'index'])->name('post.index');
-// Route hiển thị danh sách file (index)
-Route::get('/files', [FileController::class, 'index'])->name('file.index');
-
 
 // Route hiển thị danh sách gói VIP
 Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
@@ -248,4 +245,14 @@ Route::get('/admin/subscriptions/{subscription}/edit', [SubscriptionController::
 Route::put('/admin/subscriptions/{subscription}', [SubscriptionController::class, 'update'])->name('admin.subscriptions.update');
 Route::delete('/admin/subscriptions/{subscription}', [SubscriptionController::class, 'destroy'])->name('admin.subscriptions.destroy');
 
+// Bài viết
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('posts', PostController::class);  // Tạo route cho tất cả các hành động CRUD của bài đăng
+});
 
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('posts', PostController::class)->names('admin.posts');
+});
+
+// Thống kê Admin
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

@@ -47,6 +47,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.posts.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-file-alt mr-3"></i> Quản lý bài đăng
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('images.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
                             <i class="fas fa-image mr-3"></i> Quản lý thư viện ảnh
                         </a>
@@ -70,24 +75,29 @@
         </div>
 
         <!-- Main content -->
-        <div class="flex-1">
-            <!-- Navbar -->
-            <div class="bg-white px-6 py-4 shadow-md flex justify-between items-center">
-                <button id="toggle-sidebar" class="text-indigo-800 text-xl focus:outline-none">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="flex items-center space-x-4">
-                    <span>Admin</span>
-                </div>
-            </div>
+        <!-- Main content -->
+        <div class="flex-1 p-8">
+            <h1 class="text-3xl font-bold mb-6">Thống Kê Quản Lý</h1>
 
-            <div class="p-8 bg-gray-50">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-6">Welcome to the admin page !!!</h3>
-                    @yield('content') <!-- Nội dung của các trang con -->
+            <div class="grid grid-cols-3 gap-6">
+                <!-- Thống kê Người Dùng -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Người Dùng</h2>
+                    <p class="text-4xl font-bold text-indigo-600">{{ $userCount }}</p>
+                </div>
+
+                <!-- Thống kê Bài Đăng -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Bài Đăng</h2>
+                    <p class="text-4xl font-bold text-indigo-600">{{ $postCount }}</p>
+                </div>
+
+                <!-- Thống kê Gói VIP -->
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Gói VIP</h2>
+                    <p class="text-4xl font-bold text-indigo-600">{{ $subscriptionCount }}</p>
                 </div>
             </div>
-        </div>
     </div>
 
     <script>

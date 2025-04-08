@@ -33,6 +33,21 @@
                     <input type="password" name="password" id="password" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
                 </div>
 
+                <!-- Xác nhận mật khẩu -->
+                <div class="mb-4">
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Xác Nhận Mật Khẩu</label>
+                    <input type="password" name="password_confirmation" id="password_confirmation" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
+                </div>
+
+                <!-- Loại tài khoản -->
+                <div class="mb-4">
+                    <label for="role" class="block text-sm font-medium text-gray-700">Loại tài khoản</label>
+                    <select name="role" id="role" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400" required>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+
                 <!-- Nút Quay lại và Lưu -->
                 <div class="flex justify-end space-x-4 mt-6">
                     <button type="button" onclick="window.history.back()" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Quay lại</button>

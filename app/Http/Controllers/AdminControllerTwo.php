@@ -10,6 +10,4 @@ class AdminControllerTwo extends Controller
     {
         return view('admin.dashboard2'); // Trả về view cho dashboard của Admin loại 2
     }
-
-    // Thêm các phương thức khác cho Admin loại 2 nếu cần
 }

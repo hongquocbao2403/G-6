@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Post;
 use App\Models\User;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,7 +11,13 @@ class AdminController extends Controller
     // Trang dashboard của Admin
     public function dashboard()
     {
-        return view('admin.dashboard');
+        // Lấy số lượng người dùng, bài đăng và tài khoản (subscriptions)
+        $userCount = User::count();            // Số lượng người dùng
+        $postCount = Post::count();            // Số lượng bài đăng
+        $subscriptionCount = Subscription::count();  // Số lượng gói VIP đã đăng ký
+
+        // Truyền dữ liệu thống kê vào view
+        return view('admin.dashboard', compact('userCount', 'postCount', 'subscriptionCount'));
     }
 
     // Hiển thị danh sách người dùng
