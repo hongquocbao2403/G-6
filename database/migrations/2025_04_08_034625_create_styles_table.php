@@ -6,17 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('styles', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Cột 'name' để lưu tên phong cách
-            $table->timestamps(); // Thêm thời gian tạo và cập nhật
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('styles');
     }
 };
+

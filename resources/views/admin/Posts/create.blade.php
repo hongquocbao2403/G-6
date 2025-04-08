@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,56 +8,63 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 </head>
-<body class="bg-gray-100 font-sans">
 
-    <div class="flex min-h-screen">
-        <!-- Main content -->
-        <div class="flex-1 p-8">
-            <h1 class="text-3xl font-bold mb-6">Thêm Bài Đăng Mới</h1>
+<body class="bg-gray-100">
+    <!-- Main Content -->
+    <div class="p-6">
+        <h1 class="text-3xl font-bold mb-6 text-left">Thêm Bài Đăng Mới</h1>
 
-            <!-- Hiển thị thông báo thành công -->
-            @if(session('success'))
-                <div id="success-message" class="mb-4 text-green-600 p-4 border border-green-300 rounded-lg">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <form action="{{ route('admin.posts.store') }}" method="POST">
-                    @csrf
-                    <div class="space-y-4">
-                        <div>
-                            <label for="title" class="block text-gray-700 font-semibold">Tiêu Đề</label>
-                            <input type="text" name="title" id="title" class="w-full p-3 border border-gray-300 rounded-lg" value="{{ old('title') }}" required>
-                        </div>
-
-                        <div>
-                            <label for="content" class="block text-gray-700 font-semibold">Nội Dung</label>
-                            <textarea name="content" id="content" rows="5" class="w-full p-3 border border-gray-300 rounded-lg" required>{{ old('content') }}</textarea>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 w-full">
-                                <i class="fas fa-save mr-2"></i> Lưu Bài Đăng
-                            </button>
-                        </div>
-                    </div>
-                </form>
+        <!-- Hiển thị thông báo thành công -->
+        @if(session('success'))
+            <div id="success-message" class="mb-4 text-green-600 p-4 border border-green-300 rounded-lg">
+                {{ session('success') }}
             </div>
+        @endif
+
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl w-full">
+            <form action="{{ route('admin.posts.store') }}" method="POST">
+                @csrf
+
+                <!-- Tiêu Đề -->
+                <div class="mb-4">
+                    <label for="title" class="block text-sm font-medium text-gray-700 text-left">Tiêu Đề</label>
+                    <input type="text" name="title" id="title"
+                        class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+                        value="{{ old('title') }}" required>
+                </div>
+
+                <!-- Nội Dung -->
+                <div class="mb-4">
+                    <label for="content" class="block text-sm font-medium text-gray-700 text-left">Nội Dung</label>
+                    <textarea name="content" id="content" rows="5"
+                        class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+                        required>{{ old('content') }}</textarea>
+                </div>
+
+                <!-- Nút Quay lại và Lưu -->
+                <div class="flex justify-start space-x-4 mt-6">
+                    <button type="button" onclick="window.history.back()"
+                        class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Quay lại</button>
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                        <i class="fas fa-save mr-2"></i> Lưu Bài Đăng
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
     <!-- JavaScript để ẩn thông báo sau 2 giây -->
     <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
+        window.addEventListener('DOMContentLoaded', () => {
             const successMessage = document.getElementById('success-message');
             if (successMessage) {
                 setTimeout(() => {
-                    successMessage.style.display = 'none'; // Ẩn thông báo sau 2 giây
-                }, 2000); // Sau 2 giây
+                    successMessage.style.display = 'none';
+                }, 2000);
             }
         });
     </script>
-
 </body>
+
 </html>

@@ -1,44 +1,66 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Storage;
+
 use App\Models\Style;
-use App\Models\Image;
 use Illuminate\Http\Request;
+
 class StyleController extends Controller
 {
     public function index()
     {
-        $images = Image::with('style')->orderBy('created_at', 'desc')->get(); // Lấy theo thời gian mới nhất
-        return view('admin.images.index', compact('images'));
+        $styles = Style::latest()->get();
+        return view('admin.styles.index', compact('styles'));
     }
-    // Phương thức để hiển thị form thêm phong cách
-    public function create($adminId = null)
+
+    public function create()
     {
-        // Lấy tất cả phong cách
-        $styles = Style::all();
-        return view('admin.styles.index', compact('adminId', 'styles'));
+        return view('admin.styles.create');
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255|unique:styles,name',
-        'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required',
+            'image' => 'nullable|image|max:2048',
+        ]);
 
-    $style = new Style();
-    $style->name = $request->input('name');
+        $data = $request->only('name');
 
-    // Kiểm tra và lưu hình ảnh
-    if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('styles', 'public');
-        $style->image = $imagePath; // Lưu đường dẫn hình ảnh vào cột 'image'
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('styles', 'public');
+        }
+
+        Style::create($data);
+        return redirect()->route('admin.styles.index')->with('success', 'Tạo mới thành công!');
     }
 
-    $style->save();
+    public function edit(Style $style)
+    {
+        return view('admin.styles.edit', compact('style'));
+    }
 
-    return redirect()->route('image.index')->with('success', 'Phong cách đã được thêm!');
+    public function update(Request $request, Style $style)
+    {
+        $request->validate([
+            'name' => 'required',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->only('name');
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('styles', 'public');
+        }
+
+        $style->update($data);
+        return redirect()->route('admin.styles.index')->with('success', 'Cập nhật thành công!');
+    }
+
+    public function destroy(Style $style)
+    {
+        $style->delete();
+        return redirect()->route('admin.styles.index')->with('success', 'Đã xoá!');
+    }
 }
 
-}

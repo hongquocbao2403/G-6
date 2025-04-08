@@ -3,17 +3,12 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminControllerTwo;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\StyleController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\StyleController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin/second')->name('admin.second.')->group(function () {
     Route::get('/dashboard', [AdminControllerTwo::class, 'dashboard'])->name('dashboard');
@@ -74,56 +69,6 @@ Route::put('users/{user}', [UserController::class, 'update'])->name('users.updat
 // Route xóa người dùng
 Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-// Route để hiển thị form thêm phong cách
-Route::get('admin/styles/create/adminId', [StyleController::class, 'create'])->name('styles.create');
-Route::post('/styles', [StyleController::class, 'store'])->name('styles.store');
-
-// Route để lưu phong cách mới
-Route::post('/admin/styles/store/adminId', [StyleController::class, 'store'])->name('admin.styles.store');
-Route::post('admin/styles/store', [StyleController::class, 'store'])->name('admin.styles.store');
-Route::post('admin/styles/store/adminId', [StyleController::class, 'store'])->name('admin.styles.store');
-Route::get('images/create', [ImageController::class, 'create'])->name('admin.images.create');
-Route::get('images', [ImageController::class, 'index'])->name('admin.images.index');
-Route::post('images', [ImageController::class, 'store'])->name('images.store');
-Route::delete('images/image', [ImageController::class, 'destroy'])->name('images.destroy');
-Route::get('/images', [ImageController::class, 'index'])->name('images.index');
-Route::get('/images', [ImageController::class, 'index'])->name('images.index');
-// Route cho trang danh sách ảnh (index)
-Route::get('/admin/images', [ImageController::class, 'index'])->name('admin.images.index');
-
-// Route cho trang tạo ảnh mới (create)
-Route::get('images/create', [ImageController::class, 'create'])->name('images.create');
-
-// Route cho việc lưu ảnh vào database (store)
-Route::post('/admin/images', [ImageController::class, 'store'])->name('admin.images.store');
-
-// Route cho việc xóa ảnh (destroy)
-Route::delete('/admin/images/{id}', [ImageController::class, 'destroy'])->name('admin.images.destroy');
-
-// Route để hiển thị danh sách ảnh
-Route::get('/images', [ImageController::class, 'index'])->name('images.index');
-
-// Route để tạo ảnh mới
-Route::get('/images/create', [ImageController::class, 'create'])->name('images.create');
-
-// Route để lưu ảnh vào cơ sở dữ liệu
-Route::post('/images', [ImageController::class, 'store'])->name('image.store');
-
-// Route để xóa ảnh
-Route::delete('/images/{id}', [ImageController::class, 'destroy'])->name('images.destroy');
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('admin/images', [ImageController::class, 'index'])->name('admin.images.index');
-});
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('styles', [StyleController::class, 'index'])->name('styles.index');
-    Route::post('styles/store', [StyleController::class, 'store'])->name('styles.store');
-});
-
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('styles', [StyleController::class, 'index'])->name('styles.index');
-    Route::get('styles/create', [StyleController::class, 'create'])->name('styles.create');
-    Route::post('styles/store', [StyleController::class, 'store'])->name('styles.store');
-});
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('styles', \App\Http\Controllers\StyleController::class);
 });
@@ -256,3 +201,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 // Thống kê Admin
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+// Thêm phong cách
+Route::resource('styles', StyleController::class);

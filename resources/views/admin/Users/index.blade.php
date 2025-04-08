@@ -26,13 +26,18 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('images.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-image mr-3"></i> Thư viện ảnh
+                        <a href="{{ route('admin.posts.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-file-alt mr-3"></i> Quản lý bài đăng
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
                             <i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng ký VIP
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.styles.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-palette mr-3"></i> Quản lý Phong Cách
                         </a>
                     </li>
                 </ul>

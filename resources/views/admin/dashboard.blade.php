@@ -52,13 +52,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('images.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-image mr-3"></i> Quản lý thư viện ảnh
+                        <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng ký VIP
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng ký VIP
+                        <a href="{{ route('admin.styles.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-palette mr-3"></i> Quản lý Phong Cách
                         </a>
                     </li>
                 </ul>
@@ -75,11 +75,10 @@
         </div>
 
         <!-- Main content -->
-        <!-- Main content -->
         <div class="flex-1 p-8">
             <h1 class="text-3xl font-bold mb-6">Thống Kê Quản Lý</h1>
 
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Thống kê Người Dùng -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
                     <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Người Dùng</h2>
@@ -97,15 +96,56 @@
                     <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Gói VIP</h2>
                     <p class="text-4xl font-bold text-indigo-600">{{ $subscriptionCount }}</p>
                 </div>
+
+                <!-- Thống kê Phong Cách -->
+                <div class="bg-white p-6 rounded-lg shadow text-center md:col-span-1">
+                    <h2 class="text-xl font-semibold text-indigo-800 mb-2">Số Lượng Phong Cách</h2>
+                    <p class="text-3xl font-bold text-indigo-600">{{ $styleCount }}</p>
+                </div>
             </div>
+
+            <!-- Recent Activities -->
+            <div class="mt-10">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Hoạt Động Gần Đây</h2>
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <table class="min-w-full text-sm text-left text-gray-700">
+                        <thead class="bg-indigo-600 text-white">
+                            <tr>
+                                <th class="px-6 py-3">Người Dùng</th>
+                                <th class="px-6 py-3">Hành Động</th>
+                                <th class="px-6 py-3">Chi Tiết</th>
+                                <th class="px-6 py-3">Thời Gian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($recentActivities as $activity)
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="px-6 py-4">{{ $activity->user->name ?? 'Hệ thống' }}</td>
+                                    <td class="px-6 py-4">{{ $activity->action }}</td>
+                                    <td class="px-6 py-4">{{ $activity->description }}</td>
+                                    <td class="px-6 py-4">{{ $activity->created_at->diffForHumans() }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">Không có hoạt động gần đây.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Toggle Sidebar
-        document.getElementById("toggle-sidebar").addEventListener("click", function() {
-            document.getElementById("sidebar").classList.toggle("w-64");
-            document.getElementById("sidebar").classList.toggle("w-16");
-        });
+        // Toggle Sidebar (nếu có nút toggle)
+        const toggleBtn = document.getElementById("toggle-sidebar");
+        if (toggleBtn) {
+            toggleBtn.addEventListener("click", function() {
+                document.getElementById("sidebar").classList.toggle("w-64");
+                document.getElementById("sidebar").classList.toggle("w-16");
+            });
+        }
     </script>
 </body>
 </html>

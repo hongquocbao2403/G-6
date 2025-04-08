@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -24,6 +24,13 @@ class PostController extends Controller
         // Lưu bài đăng mới
         Post::create($request->all());
         return redirect()->route('admin.posts.index');
+         // Ghi hoạt động tại đây
+        Activity::create([
+        'user_id' => auth()->id(),
+        'action' => 'Tạo bài đăng',
+        'description' => 'Đã tạo bài đăng: ' . $post->title,
+        ]);
+        return redirect()->route('admin.posts.index')->with('success', 'Tạo bài đăng thành công!');
     }
 
     public function edit(Post $post)

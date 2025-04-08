@@ -35,6 +35,11 @@
                             <i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng Ký VIP
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.styles.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
+                            <i class="fas fa-palette mr-3"></i> Quản lý Phong Cách
+                        </a>
+                    </li>
                 </ul>
             </div>
 
