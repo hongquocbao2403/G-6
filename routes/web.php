@@ -9,6 +9,22 @@ use App\Http\Controllers\AdminControllerTwo;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StyleController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\PredictionController;
+use App\Http\Controllers\ImageController;
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return response()->json(['message' => 'Đã đăng xuất']);
+})->name('logout');
+// Route logout thủ công
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Chuyển về trang chủ
+})->name('logout');
 
 Route::middleware(['auth', 'admin'])->prefix('admin/second')->name('admin.second.')->group(function () {
     Route::get('/dashboard', [AdminControllerTwo::class, 'dashboard'])->name('dashboard');
@@ -204,3 +220,41 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 
 // Thêm phong cách
 Route::resource('styles', StyleController::class);
+
+// Trang người dùng
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+});
+
+// cho khách chưa đăng nhập
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/tin-tuc', function () {
+    return view('news');
+})->name('tin-tuc');
+Route::get('/gioi-thieu', function () {
+    return view('intro');
+})->name('gioi-thieu');
+
+// Thông tin người dùng
+Route::middleware(['auth'])->group(function() {
+    // Xem hồ sơ
+    Route::get('/user/profile', [UserProfileController::class, 'show'])->name('user.profile');
+
+    // Chỉnh sửa hồ sơ
+    Route::get('/user/edit', [UserProfileController::class, 'edit'])->name('user.edit');
+    Route::post('/user/edit', [UserProfileController::class, 'update'])->name('user.update');
+
+    // Đổi mật khẩu
+    Route::get('/user/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
+    Route::post('/user/change-password', [UserProfileController::class, 'updatePassword'])->name('update.password');
+});
+// Chức năng dự đoán
+Route::get('/predict', [PredictionController::class, 'showForm'])->name('predict.form');
+Route::post('/predict', [PredictionController::class, 'uploadImage'])->name('predict.upload');
+Route::get('/user/predict', function () {
+    return view('user.predict');
+})->name('user.predict');
+
+Route::get('/predict', [ImageController::class, 'showPredictionForm'])->name('predict');
+Route::get('/upload-image', [ImageController::class, 'uploadImage'])->name('upload.image');
+Route::post('/upload-image', [ImageController::class, 'uploadImage'])->name('upload.image');

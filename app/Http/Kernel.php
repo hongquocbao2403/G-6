@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Authenticate::class,  // Xác thực người dùng
         ],
 
         'api' => [
@@ -35,5 +36,9 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // Các middleware khác
         'admin.type' => \App\Http\Middleware\AdminTypeMiddleware::class,
+    ];
+    protected $routeMiddleware = [
+        // ...
+        'user' => \App\Http\Middleware\UserMiddleware::class,
     ];
 }

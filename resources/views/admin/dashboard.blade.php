@@ -6,6 +6,7 @@
     <title>Trang Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Hiệu ứng fade out cho thông báo */
         @keyframes fadeOut {
@@ -65,7 +66,7 @@
             </div>
             <div>
                 <!-- Logout button -->
-                <form action="{{ route('logout') }}" method="POST" class="mt-8">
+                <form id="logout" action="{{ route('logout') }}" method="POST" class="mt-8">
                     @csrf
                     <button type="submit" class="block w-full py-3 px-4 text-red-500 bg-transparent hover:bg-red-100 rounded-lg text-center font-semibold transition">
                         <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
@@ -73,6 +74,7 @@
                 </form>
             </div>
         </div>
+
 
         <!-- Main content -->
         <div class="flex-1 p-8">
@@ -146,6 +148,22 @@
                 document.getElementById("sidebar").classList.toggle("w-16");
             });
         }
+    </script>
+    <script>
+    $('#logout').on('submit', function(event) {
+        event.preventDefault(); // Ngăn hành động submit mặc định
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function() {
+                window.location.href = "http://127.0.0.1:8000"; // Redirect về trang chủ
+            },
+            error: function() {
+                alert('Đăng xuất thất bại. Vui lòng thử lại.');
+            }
+        });
+    });
     </script>
 </body>
 </html>

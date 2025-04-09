@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Dashboard - Fashion AI</title>
+  <title>Trang Dự Đoán - Fashion AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
@@ -36,18 +36,6 @@
       gap: 10px;
     }
 
-    .logo-robot {
-      width: 40px;
-      height: 40px;
-      animation: shake 2.5s ease-in-out infinite;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(2.5deg); }
-      75% { transform: rotate(-2.5deg); }
-    }
-
     .navbar a {
       margin-left: 15px;
       padding: 10px 20px;
@@ -58,12 +46,15 @@
     }
 
     .navbar .menu-link {
-      color: #2c3e50;
+      color: #fff;
+      background-color: #3498db;
+      border-radius: 5px;
+      padding: 10px 20px;
+      transition: background-color 0.3s;
     }
 
     .navbar .menu-link:hover {
-      background-color: #f0f0f0;
-      color: #3498db;
+      background-color: #2980b9;
     }
 
     .navbar .login, .navbar .register {
@@ -73,6 +64,12 @@
     .navbar .logout {
       background-color: #3498db;
       color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s;
     }
 
     .navbar .logout:hover {
@@ -92,13 +89,9 @@
       color: #2c3e50;
     }
 
-    .user-greeting {
-      font-size: 20px;
-      color: #fff;
-    }
-
     .upload-section {
       margin-top: 40px;
+      text-align: center;
     }
 
     .upload-section h3 {
@@ -127,6 +120,7 @@
       font-size: 16px;
       cursor: pointer;
       transition: background-color 0.3s;
+      border: none;
     }
 
     .upload-section button:hover {
@@ -139,11 +133,37 @@
       color: #2c3e50;
     }
 
+    /* Spinner style */
+    .spinner {
+      font-size: 18px;
+      color: #3498db;
+      display: none; /* Ẩn mặc định */
+    }
+
+    /* Nút Trở về Trang Chủ */
+    .back-home {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-home:hover {
+      background-color: #2980b9;
+    }
+
     footer {
       background: rgb(32, 92, 152);
       color: #fff;
       padding: 60px 20px 40px;
-      margin-top: 100px;
+      margin-top: 150px;
     }
 
     footer a {
@@ -165,6 +185,7 @@
     .navbar .actions {
       display: flex;
       gap: 15px;
+      align-items: center;
     }
 
     .navbar .menu-link,
@@ -185,8 +206,7 @@
 
     .navbar .menu-link:hover,
     .navbar .dropdown-btn:hover {
-      background-color: #2980b9 !important;
-      color: white !important;
+      background-color: #2980b9;
     }
 
     .dropdown {
@@ -195,18 +215,7 @@
     }
 
     .dropdown-btn {
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
-      border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
-      min-width: 180px;
-      text-align: center;
-    }
-
-    .dropdown-btn:hover {
-      background-color: #2980b9;
     }
 
     .dropdown-content {
@@ -236,22 +245,6 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
-    /* Nút Đăng xuất giống như menu link */
-    .navbar .logout {
-      background-color: #3498db;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-
-    .navbar .logout:hover {
-      background-color: #2980b9;
-    }
   </style>
 </head>
 <body>
@@ -262,6 +255,7 @@
       <h2>FASHION AI</h2>
     </div>
     <div class="actions">
+      <a href="http://127.0.0.1:8000/user/dashboard_2" class="menu-link">Trang chủ</a>
       <a href="{{ route('upload.image') }}" class="menu-link">Dự đoán</a>
       <!-- Dropdown menu cho Thông tin cá nhân -->
       <div class="dropdown">
@@ -272,7 +266,7 @@
           <a href="{{ route('change.password') }}">Đổi mật khẩu</a>
         </div>
       </div>
-      <!-- Nút Đăng xuất giống menu link -->
+      <!-- Logout Form với phương thức POST -->
       <form id="logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
         @csrf
         <button type="submit" class="logout">Đăng xuất</button>
@@ -282,8 +276,25 @@
 
   <!-- Main Content -->
   <div class="container">
-    <h1>Chào mừng đến với trang tổng quan của bạn</h1>
-    <p class="user-greeting">Chào {{ Auth::user()->name }}, đây là không gian riêng của bạn!</p>
+    <h1>Chào mừng đến với trang dự đoán của bạn</h1>
+
+    <!-- Form upload ảnh -->
+    <div class="upload-section">
+      <h3>Upload ảnh để nhận dạng phong cách</h3>
+      <form action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="image" required>
+        <button type="submit">Tải lên</button>
+      </form>
+    </div>
+
+    <!-- Kết quả nhận dạng phong cách -->
+    @if(session('style'))
+      <div class="result-section">
+        <h3>Phong cách nhận dạng:</h3>
+        <p>{{ session('style') }}</p>
+      </div>
+    @endif
   </div>
 
   <!-- Footer -->
@@ -304,8 +315,12 @@
       <div style="flex: 1 1 200px; margin-bottom: 30px;">
         <h4>Theo dõi chúng tôi</h4>
         <div style="display: flex; gap: 15px;">
-          <a href="https://facebook.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" alt="Facebook"></a>
-          <a href="https://instagram.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/32/2111/2111463.png" alt="Instagram"></a>
+          <a href="https://facebook.com" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" alt="Facebook">
+          </a>
+          <a href="https://instagram.com" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/32/2111/2111463.png" alt="Instagram">
+          </a>
         </div>
       </div>
     </div>
@@ -315,6 +330,16 @@
   </footer>
 
   <script>
+    // Khi ảnh được load hoàn chỉnh, ẩn spinner và hiển thị ảnh.
+    const uploadedImg = document.getElementById('uploadedImage');
+    if(uploadedImg){
+      uploadedImg.onload = function(){
+        document.getElementById('spinner').style.display = 'none';
+        uploadedImg.style.display = 'block';
+      };
+    }
+
+    // Xử lý đăng xuất qua AJAX.
     $('#logout').on('submit', function(event) {
       event.preventDefault(); // Ngăn hành động submit mặc định
       $.ajax({
@@ -330,6 +355,5 @@
       });
     });
   </script>
-
 </body>
 </html>

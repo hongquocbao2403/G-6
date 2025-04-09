@@ -8,6 +8,6 @@ class AdminControllerTwo extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard2'); // Trả về view cho dashboard của Admin loại 2
+        return view('admin.dashboard_2'); // Trả về view cho dashboard của Admin loại 2
     }
 }

@@ -12,7 +12,6 @@ class UserController extends Controller
     {
         return view('user.dashboard_2');
     }
-
     public function create()
     {
         return view('admin.users.create');
