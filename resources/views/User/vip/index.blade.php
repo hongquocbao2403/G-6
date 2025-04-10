@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bài đăng từ Admin - Fashion AI</title>
+  <title>Đăng ký VIP - FASHION AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -55,7 +55,7 @@
     }
 
     .actions a:hover {
-      transform: translateY(-4px); /* Thêm hiệu ứng nhảy lên */
+      transform: translateY(-4px);
     }
 
     .actions button {
@@ -66,16 +66,10 @@
       color: white;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
-    .actions button:hover {
-      background-color: #2980b9;
-    }
-
-    /* Đảm bảo nút đăng xuất không có hiệu ứng hover */
     form#logout button {
-      transform: none !important;  /* Bỏ hiệu ứng nhảy lên cho nút đăng xuất */
+      transform: none !important;
     }
 
     .container {
@@ -84,52 +78,89 @@
       padding: 60px 20px;
     }
 
-    .post-card {
+    .title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 40px;
+    }
+
+    .vip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .vip-box {
       background-color: white;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       padding: 25px;
-      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: 0.3s ease;
-    }
-
-    .post-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    }
-
-    .post-title {
-      font-size: 24px;
-      font-weight: 600;
-      color: #2c3e50;
-      margin-bottom: 10px;
-    }
-
-    .post-content {
-      color: #555;
-      margin-bottom: 15px;
-      line-height: 1.6;
-    }
-
-    .post-meta {
-      font-size: 14px;
-      color: #888;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
     }
 
-    .no-posts {
-      text-align: center;
-      color: #fff;
+    .vip-box:hover {
+      transform: translateY(-4px);
+    }
+
+    .vip-name {
       font-size: 20px;
-      margin-top: 50px;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .vip-description {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .vip-price {
+      font-size: 18px;
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .vip-button {
+      margin-top: 20px;
+      padding: 10px 0;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .vip-button:hover {
+      background-color: #0056b3;
+    }
+
+    .vip-button[disabled] {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+
+    .alert-success {
+      background-color: #28a745;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 16px;
     }
 
     footer {
       background: rgb(32, 92, 152);
       color: #fff;
       padding: 60px 20px 40px;
-      margin-top: 50px;
+      margin-top: 60px;
     }
 
     footer a {
@@ -139,16 +170,6 @@
 
     footer a:hover {
       text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .post-title {
-        font-size: 20px;
-      }
-
-      .actions {
-        justify-content: center;
-      }
     }
   </style>
 </head>
@@ -180,20 +201,32 @@
 
   <!-- Content -->
   <div class="container">
-    <h1 class="text-4xl font-bold text-white mb-10 text-center">📝 Bài đăng từ Admin</h1>
+    <h2 class="title">🎖️ Danh sách gói VIP</h2>
 
-    @forelse($posts as $post)
-      <div class="post-card">
-        <div class="post-title">{{ $post->title }}</div>
-        <div class="post-content">{{ $post->content }}</div>
-        <div class="post-meta">
-          <span>👤 {{ $post->user?->name ?? 'Admin' }}</span>
-          <span>🕒 {{ $post->created_at->format('H:i d/m/Y') }}</span>
-        </div>
+    @if(session('success'))
+      <div class="alert-success">
+        {{ session('success') }}
       </div>
-    @empty
-      <div class="no-posts">Hiện tại chưa có bài đăng nào từ admin.</div>
-    @endforelse
+    @endif
+
+    <div class="vip-grid">
+      @foreach ($subscriptions as $sub)
+        <div class="vip-box">
+          <div class="vip-name">{{ $sub->name }}</div>
+          <div class="vip-description">{{ $sub->description }}</div>
+          <div class="vip-price">{{ number_format($sub->price, 0, ',', '.') }} VND</div>
+
+          @if (auth()->user()->subscription_id === $sub->id)
+            <button class="vip-button" disabled>Đã đăng ký</button>
+          @else
+            <form method="POST" action="{{ route('vip.subscribe', $sub->id) }}">
+              @csrf
+              <button type="submit" class="vip-button">Đăng ký ngay</button>
+            </form>
+          @endif
+        </div>
+      @endforeach
+    </div>
   </div>
 
   <!-- Footer -->
@@ -223,7 +256,6 @@
       © 2025 FASHION.AI. All rights reserved.
     </div>
   </footer>
-
   <!-- JS -->
   <script>
     $('#logout').on('submit', function(event) {

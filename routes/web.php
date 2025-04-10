@@ -16,6 +16,8 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserPostController;
+use App\Http\Controllers\VipController;
+
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -261,3 +263,10 @@ Route::get('/upload-image', [ImageController::class, 'uploadImage'])->name('uplo
 Route::post('/upload-image', [ImageController::class, 'uploadImage'])->name('upload.image');
 // Bài đăng
 Route::get('/bai-dang', [UserPostController::class, 'index'])->name('user.posts.index');
+// Chức năng gói VIP
+Route::middleware(['auth'])->group(function () {
+    Route::get('/vip', [VipController::class, 'index'])->name('vip.index');
+    Route::post('/vip/subscribe/{id}', [VipController::class, 'subscribe'])->name('vip.subscribe');
+});
+Route::get('/vip', [VipController::class, 'index'])->name('vip.index');
+Route::post('/vip/subscribe/{id}', [VipController::class, 'subscribe'])->name('vip.subscribe');

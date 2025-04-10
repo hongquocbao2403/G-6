@@ -148,6 +148,7 @@
             <a href="{{ route('user.posts.index') }}" class="menu-link">
                 <i class="fas fa-pen-to-square"></i> Blog
             </a>
+            <a href="{{ route('vip.index') }}" class="menu-link"><i class="fas fa-crown"></i> Đăng ký VIP</a>
             <a href="{{ route('user.profile') }}" class="menu-link">
                 <i class="fas fa-user"></i> Hồ sơ
             </a>

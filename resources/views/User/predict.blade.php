@@ -251,6 +251,7 @@
       <a href="http://127.0.0.1:8000/user/dashboard_2" class="icon-button"><i class="fas fa-home"></i> Trang chủ</a>
       <a href="{{ route('upload.image') }}" class="icon-button"><i class="fas fa-search"></i> Dự đoán</a>
       <a href="{{ route('user.posts.index') }}" class="icon-button"><i class="fas fa-pen-to-square"></i> Blog</a>
+      <a href="{{ route('vip.index') }}" class="icon-button"><i class="fas fa-crown"></i> Đăng ký VIP</a>
       <div class="dropdown">
         <a href="{{ route('user.profile') }}" class="icon-button"><i class="fas fa-user"></i> Hồ sơ</a>
       </div>
