@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chỉnh sửa hồ sơ - Fashion AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: 'Be Vietnam Pro', sans-serif;
@@ -35,22 +36,41 @@
             gap: 10px;
         }
 
-        .navbar a {
-            margin-left: 15px;
+        .menu-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 10px 20px;
+            background-color: #00cfff;
+            color: white;
+            font-weight: 600;
+            border-radius: 30px;
             text-decoration: none;
             font-size: 16px;
+            margin-left: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .logout-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
             border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
             transition: 0.3s;
         }
 
-        .navbar .menu-link {
-            color: #2c3e50;
-        }
-
-        .navbar .menu-link:hover {
-            background-color: #f0f0f0;
-            color: #3498db;
+        .logout-btn:hover {
+            background-color: #2980b9;
         }
 
         .container {
@@ -114,7 +134,6 @@
             color: #ccc;
             text-decoration: none;
         }
-
         footer a:hover {
             text-decoration: underline;
         }
@@ -128,14 +147,18 @@
             <h2>FASHION AI</h2>
         </div>
         <div>
-            <a href="{{ route('gioi-thieu') }}" class="menu-link">Giới thiệu</a>
-            <a href="{{ route('tin-tuc') }}" class="menu-link">Tin tức</a>
-
-            <!-- Logout Form với phương thức POST -->
-            <form id="logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="logout-btn">Đăng xuất</button>
-            </form>
+            <a href="http://127.0.0.1:8000/user/dashboard_2" class="menu-btn">
+                <i class="fas fa-home"></i> Trang chủ
+            </a>
+            <a href="{{ route('upload.image') }}" class="menu-btn">
+                <i class="fas fa-search"></i> Dự đoán
+            </a>
+            <a href="{{ route('user.posts.index') }}" class="menu-btn">
+                <i class="fas fa-edit"></i> Blog
+            </a>
+            <a href="{{ route('user.profile') }}" class="menu-btn">
+                <i class="fas fa-user"></i> Hồ sơ
+            </a>
         </div>
     </div>
 

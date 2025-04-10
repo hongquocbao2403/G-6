@@ -392,7 +392,6 @@
       "Grunge", "Streetwear", "Chic", "Preppy", "Business",
       "Punk", "Goth", "Y2K", "Retro", "Classic", "E-girl", "Tomboy"
     ];
-
     const input = document.getElementById("styleSearch");
     const suggestions = document.getElementById("suggestions");
 

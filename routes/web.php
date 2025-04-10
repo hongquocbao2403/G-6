@@ -15,6 +15,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UserPostController;
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -254,7 +255,9 @@ Route::post('/predict', [PredictionController::class, 'uploadImage'])->name('pre
 Route::get('/user/predict', function () {
     return view('user.predict');
 })->name('user.predict');
-
+Route::get('/user/dashboard_2', [UserController::class, 'dashboard_2'])->name('user.dashboard_2')->middleware('auth');
 Route::get('/predict', [ImageController::class, 'showPredictionForm'])->name('predict');
 Route::get('/upload-image', [ImageController::class, 'uploadImage'])->name('upload.image');
 Route::post('/upload-image', [ImageController::class, 'uploadImage'])->name('upload.image');
+// Bài đăng
+Route::get('/bai-dang', [UserPostController::class, 'index'])->name('user.posts.index');

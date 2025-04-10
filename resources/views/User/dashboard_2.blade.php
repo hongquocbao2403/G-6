@@ -6,6 +6,8 @@
   <title>User Dashboard - Fashion AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
@@ -22,171 +24,42 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
     }
 
-    .navbar h2 {
+    .logo-section h2 {
       margin: 0;
       font-weight: 700;
       color: #2c3e50;
     }
 
-    .logo-section {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-robot {
-      width: 40px;
-      height: 40px;
-      animation: shake 2.5s ease-in-out infinite;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(2.5deg); }
-      75% { transform: rotate(-2.5deg); }
-    }
-
-    .navbar a {
-      margin-left: 15px;
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 16px;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
-
-    .navbar .menu-link {
-      color: #2c3e50;
-    }
-
-    .navbar .menu-link:hover {
-      background-color: #f0f0f0;
-      color: #3498db;
-    }
-
-    .navbar .login, .navbar .register {
-      display: none;
-    }
-
-    .navbar .logout {
-      background-color: #3498db;
-      color: #fff;
-    }
-
-    .navbar .logout:hover {
-      background-color: #2980b9;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 44px;
-      margin-bottom: 20px;
-      color: #2c3e50;
-    }
-
-    .user-greeting {
-      font-size: 20px;
-      color: #fff;
-    }
-
-    .upload-section {
-      margin-top: 40px;
-    }
-
-    .upload-section h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-
-    .upload-section form {
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    .upload-section input[type="file"] {
-      padding: 10px;
-      margin-right: 20px;
-      border: 2px solid #3498db;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    .upload-section button {
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .upload-section button:hover {
-      background-color: #2980b9;
-    }
-
-    .result-section {
-      margin-top: 40px;
-      font-size: 18px;
-      color: #2c3e50;
-    }
-
-    footer {
-      background: rgb(32, 92, 152);
-      color: #fff;
-      padding: 60px 20px 40px;
-      margin-top: 100px;
-    }
-
-    footer a {
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 36px;
-      }
-    }
-
-    /* Navbar Button Styles */
-    .navbar .actions {
+    .actions {
       display: flex;
       gap: 15px;
+      flex-wrap: wrap;
     }
 
-    .navbar .menu-link,
-    .navbar .dropdown-btn {
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
-      border-radius: 5px;
-      font-size: 16px;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-      min-width: 180px;
-      text-align: center;
-      border: none;
-      outline: none;
-    }
-
-    .navbar .menu-link:hover,
-    .navbar .dropdown-btn:hover {
-      background-color: #2980b9 !important;
+    .enhanced-btn {
+      background: linear-gradient(135deg, #4fc1fe, #00d4ff);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      font-weight: 600;
       color: white !important;
+      border: none;
+      border-radius: 16px;
+      padding: 10px 24px;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .enhanced-btn:hover {
+      background: linear-gradient(135deg, #00c6ff);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
     }
 
     .dropdown {
@@ -194,32 +67,17 @@
       display: inline-block;
     }
 
-    .dropdown-btn {
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      min-width: 180px;
-      text-align: center;
-    }
-
-    .dropdown-btn:hover {
-      background-color: #2980b9;
-    }
-
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #fff;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      border-radius: 5px;
       top: 100%;
       left: 50%;
       transform: translateX(-50%);
+      background-color: #fff;
+      min-width: 180px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      z-index: 10;
     }
 
     .dropdown-content a {
@@ -237,20 +95,103 @@
       display: block;
     }
 
-    /* Nút Đăng xuất giống như menu link */
-    .navbar .logout {
+    .logout {
       background-color: #3498db;
-      color: #fff;
+      color: white;
       border: none;
       cursor: pointer;
       padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 16px;
-      transition: background-color 0.3s;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
     }
 
-    .navbar .logout:hover {
+    .logout:hover {
       background-color: #2980b9;
+    }
+
+    .search-style-box {
+      margin: 40px auto;
+      max-width: 550px;
+      text-align: center;
+      position: relative;
+    }
+
+    .search-style-box input {
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      outline: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .search-style-box input:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+    }
+
+    #suggestions {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: none;
+      position: absolute;
+      width: 107%;
+      z-index: 20;
+      text-align: left;
+    }
+
+    #suggestions li {
+      padding: 12px 20px;
+      cursor: pointer;
+    }
+
+    #suggestions li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 44px;
+      color: #2c3e50;
+    }
+
+    .user-greeting {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    footer {
+      background: rgb(32, 92, 152);
+      color: #fff;
+      padding: 60px 20px 40px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
     }
   </style>
 </head>
@@ -262,25 +203,25 @@
       <h2>FASHION AI</h2>
     </div>
     <div class="actions">
-      <a href="{{ route('upload.image') }}" class="menu-link">Dự đoán</a>
-      <!-- Dropdown menu cho Thông tin cá nhân -->
+      <a href="{{ route('upload.image') }}" class="enhanced-btn"><i class="fas fa-magnifying-glass"></i> Dự đoán</a>
+      <a href="{{ route('user.posts.index') }}" class="enhanced-btn"><i class="fas fa-pen-to-square"></i> Blog</a>
       <div class="dropdown">
-        <button class="dropdown-btn">Thông tin cá nhân</button>
-        <div class="dropdown-content">
-          <a href="{{ route('user.profile') }}">Xem hồ sơ</a>
-          <a href="{{ route('user.edit') }}">Chỉnh sửa hồ sơ</a>
-          <a href="{{ route('change.password') }}">Đổi mật khẩu</a>
-        </div>
+        <a href="{{ route('user.profile') }}" class="enhanced-btn"><i class="fas fa-user"></i> Hồ sơ</a>
       </div>
-      <!-- Nút Đăng xuất giống menu link -->
-      <form id="logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
+      <form id="logout" action="{{ route('logout') }}" method="POST">
         @csrf
         <button type="submit" class="logout">Đăng xuất</button>
       </form>
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- Search Box -->
+  <div class="search-style-box">
+    <input type="text" id="styleSearch" placeholder="🔍 Nhập phong cách bạn muốn tìm (ví dụ: Bohemian, Minimalist...)">
+    <ul id="suggestions"></ul>
+  </div>
+
+  <!-- Content -->
   <div class="container">
     <h1>Chào mừng đến với trang tổng quan của bạn</h1>
     <p class="user-greeting">Chào {{ Auth::user()->name }}, đây là không gian riêng của bạn!</p>
@@ -314,15 +255,51 @@
     </div>
   </footer>
 
+  <!-- JS -->
   <script>
+    const styles = [
+      "Bohemian", "Minimalist", "Vintage", "Sporty", "Casual",
+      "Grunge", "Streetwear", "Chic", "Preppy", "Business",
+      "Punk", "Goth", "Y2K", "Retro", "Classic", "E-girl", "Tomboy"
+    ];
+
+    const input = document.getElementById("styleSearch");
+    const suggestions = document.getElementById("suggestions");
+
+    input.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      suggestions.innerHTML = "";
+      if (!query) return;
+
+      const matches = styles.filter(style => style.toLowerCase().includes(query));
+      matches.forEach(match => {
+        const li = document.createElement("li");
+        li.textContent = match;
+        li.onclick = () => {
+          input.value = match;
+          suggestions.innerHTML = "";
+          window.location.href = `/style/${match.toLowerCase()}`;
+        };
+        suggestions.appendChild(li);
+      });
+
+      suggestions.style.display = matches.length ? "block" : "none";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!suggestions.contains(e.target) && e.target !== input) {
+        suggestions.style.display = "none";
+      }
+    });
+
     $('#logout').on('submit', function(event) {
-      event.preventDefault(); // Ngăn hành động submit mặc định
+      event.preventDefault();
       $.ajax({
         type: 'POST',
         url: $(this).attr('action'),
         data: $(this).serialize(),
         success: function() {
-          window.location.href = "http://127.0.0.1:8000"; // Chuyển hướng về trang chủ
+          window.location.href = "http://127.0.0.1:8000";
         },
         error: function() {
           alert('Đăng xuất thất bại. Vui lòng thử lại.');
@@ -330,6 +307,5 @@
       });
     });
   </script>
-
 </body>
 </html>
