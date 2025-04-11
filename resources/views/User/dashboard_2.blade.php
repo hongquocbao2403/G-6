@@ -256,35 +256,61 @@
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- Script -->
   <script>
-    const styles = [
-      "Bohemian", "Minimalist", "Vintage", "Sporty", "Casual",
-      "Grunge", "Streetwear", "Chic", "Preppy", "Business",
-      "Punk", "Goth", "Y2K", "Retro", "Classic", "E-girl", "Tomboy"
-    ];
-
     const input = document.getElementById("styleSearch");
     const suggestions = document.getElementById("suggestions");
+    let styles = [];
+
+    // Load styles.json
+    fetch("/data/styles.json")
+      .then(response => response.json())
+      .then(data => {
+        styles = data;
+      })
+      .catch(error => {
+        console.error("Không thể tải styles.json:", error);
+      });
 
     input.addEventListener("input", function () {
       const query = this.value.toLowerCase();
       suggestions.innerHTML = "";
-      if (!query) return;
 
-      const matches = styles.filter(style => style.toLowerCase().includes(query));
-      matches.forEach(match => {
+      if (!query) {
+        suggestions.style.display = "none";
+        return;
+      }
+
+      const matches = styles.filter(style => style.name.toLowerCase().includes(query));
+      if (matches.length === 0) {
         const li = document.createElement("li");
-        li.textContent = match;
-        li.onclick = () => {
-          input.value = match;
-          suggestions.innerHTML = "";
-          window.location.href = `/style/${match.toLowerCase()}`;
-        };
+        li.textContent = "Không tìm thấy phong cách phù hợp";
+        li.style.color = "#999";
         suggestions.appendChild(li);
-      });
+      } else {
+        matches.forEach(match => {
+          const li = document.createElement("li");
+          li.textContent = match.name;
+          li.onclick = () => {
+            input.value = match.name;
+            suggestions.innerHTML = "";
+            window.location.href = `/style/${match.slug}`;
+          };
+          suggestions.appendChild(li);
+        });
+      }
 
-      suggestions.style.display = matches.length ? "block" : "none";
+      suggestions.style.display = "block";
+    });
+
+    // Tự động chuyển khi bấm Enter
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && styles.length > 0) {
+        const match = styles.find(style => style.name.toLowerCase() === input.value.toLowerCase());
+        if (match) {
+          window.location.href = `/style/${match.slug}`;
+        }
+      }
     });
 
     document.addEventListener("click", function (e) {
@@ -293,6 +319,7 @@
       }
     });
 
+    // Ajax logout
     $('#logout').on('submit', function(event) {
       event.preventDefault();
       $.ajax({

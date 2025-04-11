@@ -270,3 +270,5 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/vip', [VipController::class, 'index'])->name('vip.index');
 Route::post('/vip/subscribe/{id}', [VipController::class, 'subscribe'])->name('vip.subscribe');
+//Tìm kiếm
+Route::get('/style/{slug}', [StyleController::class, 'show'])->name('style.show');

@@ -386,37 +386,81 @@
   </footer>
 
   <!-- JS Search -->
+  <!-- JS Search -->
   <script>
-    const styles = [
-      "Bohemian", "Minimalist", "Vintage", "Sporty", "Casual",
-      "Grunge", "Streetwear", "Chic", "Preppy", "Business",
-      "Punk", "Goth", "Y2K", "Retro", "Classic", "E-girl", "Tomboy"
-    ];
     const input = document.getElementById("styleSearch");
     const suggestions = document.getElementById("suggestions");
+    let styles = [];
+
+    // Kiểm tra trạng thái đăng nhập từ Laravel (sử dụng Blade để truyền thông tin đăng nhập)
+    const isLoggedIn = {{ auth()->check() ? 'true' : 'false' }}; // Kiểm tra người dùng đã đăng nhập chưa
+
+    // Load styles.json
+    fetch("/data/styles.json")
+      .then(response => response.json())
+      .then(data => {
+        styles = data;
+      })
+      .catch(error => {
+        console.error("Không thể tải styles.json:", error);
+      });
 
     input.addEventListener("input", function () {
+      if (!isLoggedIn) {
+        alert("Vui lòng đăng nhập để tìm kiếm phong cách.");
+        window.location.href = "{{ route('login') }}"; // Chuyển hướng đến trang đăng nhập
+        return;
+      }
+
       const query = this.value.toLowerCase();
       suggestions.innerHTML = "";
-      if (query.length === 0) return;
 
-      const matches = styles.filter(style => style.toLowerCase().includes(query));
-      matches.forEach(match => {
+      if (!query) {
+        suggestions.style.display = "none";
+        return;
+      }
+
+      const matches = styles.filter(style => style.name.toLowerCase().includes(query));
+      if (matches.length === 0) {
         const li = document.createElement("li");
-        li.textContent = match;
-        li.addEventListener("click", () => {
-          input.value = match;
-          suggestions.innerHTML = "";
-          alert("Bạn vừa chọn phong cách: " + match);
-          // TODO: Điều hướng đến trang kết quả hoặc hiển thị ảnh tương ứng
-        });
+        li.textContent = "Không tìm thấy phong cách phù hợp";
+        li.style.color = "#999";
         suggestions.appendChild(li);
-      });
+      } else {
+        matches.forEach(match => {
+          const li = document.createElement("li");
+          li.textContent = match.name;
+          li.onclick = () => {
+            input.value = match.name;
+            suggestions.innerHTML = "";
+            window.location.href = `/style/${match.slug}`;
+          };
+          suggestions.appendChild(li);
+        });
+      }
+
+      suggestions.style.display = "block";
+    });
+
+    // Tự động chuyển khi bấm Enter
+    input.addEventListener("keydown", function (e) {
+      if (!isLoggedIn) {
+        alert("Vui lòng đăng nhập để tìm kiếm phong cách. Nếu chưa hãy đăng ký nhé !!!");
+        window.location.href = "{{ route('login') }}"; // Chuyển hướng đến trang đăng nhập
+        return;
+      }
+
+      if (e.key === "Enter" && styles.length > 0) {
+        const match = styles.find(style => style.name.toLowerCase() === input.value.toLowerCase());
+        if (match) {
+          window.location.href = `/style/${match.slug}`;
+        }
+      }
     });
 
     document.addEventListener("click", function (e) {
       if (!suggestions.contains(e.target) && e.target !== input) {
-        suggestions.innerHTML = "";
+        suggestions.style.display = "none";
       }
     });
   </script>

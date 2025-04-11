@@ -62,5 +62,18 @@ class StyleController extends Controller
         $style->delete();
         return redirect()->route('admin.styles.index')->with('success', 'Đã xoá!');
     }
+    public function show($slug)
+    {
+        $styles = json_decode(file_get_contents(public_path('data/styles.json')), true);
+
+        $style = collect($styles)->firstWhere('slug', $slug);
+
+        if (!$style) {
+            abort(404);
+        }
+        return view('User.search_style.show', compact('style'));
+
+    }
+
 }
 

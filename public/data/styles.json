@@ -1,0 +1,146 @@
+[
+    {
+      "name": "Y2K Fashion Style",
+      "slug": "y2k-fashion-style",
+      "description": "Phong cách Y2K (Year 2000) mang đậm hơi thở của cuối thập niên 90 và đầu những năm 2000, khi thế giới bước vào thời đại kỹ thuật số và internet phát triển mạnh mẽ. Phong cách này nổi bật với sự kết hợp giữa công nghệ và văn hóa pop, thể hiện qua các chất liệu ánh kim, nhựa bóng, hologram, cũng như các món đồ như baby tee, crop top, quần cạp trễ, váy mini, denim sáng màu và kính mắt bản to. Phụ kiện to bản như dây chuyền chunky, túi kẹp nách, giày platform cũng là điểm nhấn quen thuộc. Y2K không chỉ là một phong cách mà còn là cảm hứng từ âm nhạc, điện ảnh, và các biểu tượng thời trang như Britney Spears, Christina Aguilera, Paris Hilton hay nhóm Destiny's Child. Phong cách này gợi nhớ sự nổi loạn, vui tươi và sẵn sàng thử nghiệm cái mới của một thế hệ trẻ bước vào kỷ nguyên số.",
+      "image": "Y2K.jpg"
+    },
+    {
+      "name": "Traditional Fashion Style",
+      "slug": "traditional-fashion-style",
+      "description": "Traditional Fashion là phong cách thời trang tôn vinh vẻ đẹp văn hóa truyền thống thông qua các loại trang phục cổ điển đặc trưng của từng quốc gia, vùng miền. Từ áo dài thướt tha của Việt Nam, kimono tinh tế của Nhật Bản, sari sặc sỡ của Ấn Độ, đến hanbok trang nhã của Hàn Quốc hay kaftan từ Trung Đông – mỗi trang phục đều mang câu chuyện lịch sử và bản sắc riêng. Không chỉ đơn thuần là quần áo, những bộ trang phục truyền thống còn gắn liền với nghi thức, lễ hội, tín ngưỡng và giá trị tâm linh của mỗi dân tộc. Vải vóc, màu sắc, hoa văn và cách mặc đều được chọn lựa kỹ càng để thể hiện địa vị, giới tính, hoặc hoàn cảnh xã hội. Trong thời trang hiện đại, phong cách truyền thống còn là nguồn cảm hứng để thiết kế cách tân, giao thoa giữa cũ và mới, truyền thống và hiện đại.",
+      "image": "Traditional.jpg"
+    },
+    {
+      "name": "Tomboy Fashion Style",
+      "slug": "tomboy-fashion-style",
+      "description": "Phong cách Tomboy là biểu tượng của sự mạnh mẽ, độc lập và phá vỡ khuôn mẫu giới tính truyền thống. Dù thường được nữ giới ưa chuộng, nhưng nó mang đậm tinh thần unisex (phi giới tính), sử dụng các món đồ vốn được coi là 'nam tính' như áo sơ mi rộng, áo blazer, quần kaki hoặc jeans rách, giày boots hoặc sneakers, cùng tông màu trung tính như đen, xám, xanh navy. Không quá cầu kỳ về kiểu dáng hay phụ kiện, Tomboy tập trung vào sự thoải mái và cá tính. Đây là phong cách dành cho những người thích sự đơn giản, không gò bó nhưng vẫn muốn thể hiện cái tôi mạnh mẽ. Đôi khi, Tomboy cũng gắn liền với các giá trị xã hội như bình đẳng giới và quyền tự do thể hiện bản thân.",
+      "image": "Tomboy"
+    },
+    {
+      "name": "Swimwear Fashion Style",
+      "slug": "swimwear-fashion-style",
+      "description": "Swimwear Fashion Style là phong cách xoay quanh các trang phục bơi lội, thường được diện trong các chuyến đi biển, hồ bơi hoặc du lịch nghỉ dưỡng mùa hè. Bao gồm bikini, monokini, áo tắm liền thân, áo choàng lưới, quần short đi biển và váy maxi mỏng nhẹ, phong cách này ưu tiên sự mát mẻ, gợi cảm và tự do vận động. Màu sắc đa dạng từ pastel dịu nhẹ đến các gam neon nổi bật, họa tiết phổ biến như hoa nhiệt đới, kẻ sọc, chấm bi hoặc da thú. Ngoài ra, phụ kiện như kính mát, mũ rộng vành, dép lê và túi cói là phần không thể thiếu để hoàn thiện set đồ. Swimwear không chỉ dừng lại ở nhu cầu tiện lợi mà còn thể hiện sự tự tin, yêu bản thân và sẵn sàng tận hưởng kỳ nghỉ trọn vẹn.",
+      "image": "Swimwear.jpg"
+    },
+    {
+      "name": "Sporty Fashion Style",
+      "slug": "sporty-fashion-style",
+      "description": "Sporty là phong cách thời trang năng động, hiện đại, kết hợp giữa tính thẩm mỹ và sự tiện lợi. Người mặc thường sử dụng những item như quần jogger, áo hoodie, áo khoác bomber, sneakers chunky, mũ snapback hay balo thể thao. Tông màu phổ biến gồm đen, trắng, đỏ, xám và neon. Phong cách này mang đến cảm giác khỏe khoắn, tự do và đầy năng lượng, thích hợp với lối sống nhanh, hiện đại và thích vận động.",
+      "image": "Sport.jpeg"
+    },
+    {
+      "name": "Softboy Fashion Style",
+      "slug": "softboy-fashion-style",
+      "description": "Softboy là phong cách thời trang hướng đến sự mềm mại, tinh tế, thường được các chàng trai sử dụng để thể hiện nét cảm xúc và nghệ sĩ trong con người họ. Họ thường chọn sweater, áo thun oversized, sơ mi cổ Đức, quần ống suông hoặc quần khaki pastel. Phụ kiện đi kèm thường là mũ len, tote bag, mắt kính gọng tròn và sneaker trắng. Phong cách này không chỉ là thẩm mỹ mà còn là cách thể hiện thái độ sống nhẹ nhàng, ấm áp và đầy chiều sâu nội tâm.",
+      "image": "Softboy.jpg"
+    },
+    {
+      "name": "Pop Art Fashion Style",
+      "slug": "pop-art-fashion-style",
+      "description": "Lấy cảm hứng từ nghệ thuật đại chúng thập niên 60, Pop Art Fashion Style nổi bật với màu sắc tươi sáng, họa tiết comic, hình ảnh biểu tượng và tính đối lập mạnh mẽ trong phối màu. Trang phục theo phong cách này thường in các nhân vật hoạt hình, biểu tượng văn hóa như lon soup, búp bê Barbie, hoặc typography ấn tượng. Đây là phong cách phá cách, nổi loạn và tràn đầy cảm hứng nghệ thuật, phù hợp với những ai yêu thích sự độc đáo và muốn trở thành tâm điểm mọi ánh nhìn.",
+      "image": "PopArt.jpg"
+    },
+    {
+      "name": "Neon Aesthetic Fashion Style",
+      "slug": "neon-aesthetic-fashion-style",
+      "description": "Phong cách Neon Aesthetic là sự kết hợp giữa thời trang tương lai và nghệ thuật ánh sáng. Trang phục thường sử dụng màu neon như xanh lá sáng, hồng fuchsia, cam rực và tím ánh điện tử. Vật liệu thường là nhựa PVC, da bóng, lưới hoặc phản quang, tạo cảm giác hiện đại, cyberpunk và nổi bật trong bóng tối. Neon Aesthetic rất phổ biến trong các lễ hội âm nhạc, club hoặc các dịp cần thể hiện sự cá tính táo bạo, trẻ trung và đầy sáng tạo.",
+      "image": "NeonAesthetic.jpg"
+    },
+    {
+      "name": "Mermaidcore Fashion Style",
+      "slug": "mermaidcore-fashion-style",
+      "description": "Mermaidcore là phong cách lấy cảm hứng từ nàng tiên cá, thiên về sự nữ tính, mộng mơ và gợi cảm. Tông màu chủ đạo gồm xanh ngọc, tím lavender, hồng ánh kim, và bạc holographic. Các item điển hình bao gồm váy ôm đuôi cá, áo corset ren, chất liệu satin, vải sheer, kim tuyến và sequin. Trang sức thường là ngọc trai, sao biển, hoặc vỏ sò cách điệu. Mermaidcore là sự kết hợp giữa fantasy và quyến rũ, phù hợp với những ai yêu sự lấp lánh, huyền bí và phiêu du.",
+      "image": "Mermaidcore.png"
+    },
+    {
+      "name": "Lolita Fashion Style",
+      "slug": "lolita-fashion-style",
+      "description": "Phong cách Lolita bắt nguồn từ Nhật Bản, lấy cảm hứng từ thời trang quý tộc Rococo và Victoria. Trang phục thường gồm váy xòe dài đến đầu gối, corset, áo blouse tay bồng, tất ren dài, nón bonnet và giày Mary Jane. Có nhiều biến thể như Gothic Lolita (đen, trắng), Sweet Lolita (màu pastel, họa tiết cute) hay Classic Lolita (trang nhã, trung tính). Đây không chỉ là thời trang, mà là một lối sống, một tuyên ngôn văn hóa phản ánh sự trân trọng nét thanh lịch, thuần khiết và độc đáo.",
+      "image": "Lolita.jpg"
+    },
+    {
+      "name": "J-pop Idol Fashion Style",
+      "slug": "jpop-idol-fashion-style",
+      "description": "Phong cách thời trang J-pop Idol là biểu tượng cho sự dễ thương và ngọt ngào trong âm nhạc Nhật Bản. Các idol nữ thường mặc trang phục sáng màu, với váy xòe, áo phông và các chi tiết dễ thương như nơ, dây thắt lưng, và giày ballet. Phong cách này mang đến một hình ảnh tươi trẻ, đáng yêu và dễ gần, phù hợp với những ai yêu thích sự nổi bật trong giới trẻ Nhật Bản.",
+      "image": "J-pop.jpg"
+    },
+    {
+      "name": "Harajuku Fashion Style",
+      "slug": "harajuku-fashion-style",
+      "description": "Phong cách Harajuku nổi bật với sự sáng tạo không giới hạn và kết hợp nhiều thể loại trang phục khác nhau. Là phong cách thời trang đường phố của Nhật Bản, Harajuku tạo nên sự pha trộn thú vị giữa những màu sắc sặc sỡ, phụ kiện độc đáo và các kiểu trang phục từ truyền thống đến hiện đại. Phong cách này là biểu tượng của sự tự do, cá tính và sáng tạo, phản ánh một phong cách sống đa dạng và không bị gò bó.",
+      "image": "Harajuku.jpg"
+    },
+    {
+      "name": "Gender Fluid Fashion Style",
+      "slug": "gender-fluid-fashion-style",
+      "description": "Phong cách Gender Fluid phá vỡ những giới hạn về giới tính trong trang phục. Người mặc có thể tự do lựa chọn giữa các item nam hoặc nữ mà không bị ràng buộc bởi các định kiến giới tính. Những bộ trang phục thường có thiết kế unisex, phù hợp với tất cả mọi người và không phân biệt giới tính. Phong cách này phản ánh sự tự do và bình đẳng trong việc thể hiện bản thân.",
+      "image": "Gender.jpg"
+    },
+    {
+      "name": "Futuristic Fashion Style",
+      "slug": "futuristic-fashion-style",
+      "description": "Phong cách Futuristic là sự kết hợp giữa thời trang và công nghệ. Các bộ trang phục có thiết kế độc đáo, táo bạo với chất liệu kim loại, vải công nghệ cao và các đường nét hiện đại. Phong cách này lấy cảm hứng từ tương lai, mang lại hình ảnh mạnh mẽ, phá cách và đầy sáng tạo. Đây là phong cách dành cho những ai yêu thích sự đổi mới và khát khao khám phá những điều chưa từng có.",
+      "image": "Futuristic.jpg"
+    },
+    {
+      "name": "Elegant Fashion Style",
+      "slug": "elegant-fashion-style",
+      "description": "Phong cách thanh lịch là sự kết hợp giữa sự tinh tế và nữ tính, thường sử dụng những bộ váy dài, chất liệu vải mềm mại như lụa, satin và gam màu trung tính như trắng, đen, kem. Phong cách này không chỉ phù hợp với các sự kiện trang trọng mà còn thể hiện được sự duyên dáng và tinh tế trong từng chi tiết. Các phụ kiện như túi xách nhỏ, giày cao gót và trang sức thanh lịch là điểm nhấn hoàn hảo.",
+      "image": "Elegant.jpg"
+    },
+    {
+      "name": "Eco-Friendly Fashion Style",
+      "slug": "eco-friendly-fashion-style",
+      "description": "Phong cách thời trang bền vững tập trung vào việc sử dụng các vật liệu thân thiện với môi trường và các phương pháp sản xuất ít ảnh hưởng đến thiên nhiên. Các trang phục thường được làm từ vải tái chế, vải hữu cơ hoặc các chất liệu tự nhiên khác. Phong cách này không chỉ giúp bảo vệ môi trường mà còn thể hiện ý thức của người mặc về sự cần thiết của việc bảo vệ hành tinh.",
+      "image": "Eco-Friendly.jpg"
+    },
+    {
+      "name": "Denim-on-Denim Fashion Style",
+      "slug": "denim-on-denim-fashion-style",
+      "description": "Phong cách Denim-on-Denim là cách phối đồ hoàn hảo khi kết hợp các trang phục từ denim như áo khoác bò, quần jeans, và chân váy denim. Đây là một phong cách đơn giản nhưng rất thời thượng, giúp người mặc thể hiện cá tính mạnh mẽ nhưng cũng không kém phần tinh tế. Sự kết hợp giữa các loại denim có thể tạo ra vẻ ngoài năng động, phù hợp với nhiều hoàn cảnh khác nhau.",
+      "image": "Denim-on-Denim.jpg"
+    },
+    {
+      "name": "Decora Fashion Style",
+      "slug": "decora-fashion-style",
+      "description": "Phong cách Decora là phong cách thời trang đặc trưng của Nhật Bản, với việc sử dụng nhiều phụ kiện đầy màu sắc như băng đô, vòng tay, và các đồ trang trí khác. Những bộ trang phục này thường rất dễ thương, đầy màu sắc và có sự kết hợp hài hòa giữa các chi tiết, tạo nên một hình ảnh nổi bật và sáng tạo. Phong cách này thể hiện sự vui tươi và lạc quan trong cuộc sống.",
+      "image": "Decora.jpg"
+    },
+    {
+      "name": "Cottagecore Fashion Style",
+      "slug": "cottagecore-fashion-style",
+      "description": "Phong cách Cottagecore là phong cách lãng mạn và hoài cổ, lấy cảm hứng từ cuộc sống nông thôn và thiên nhiên. Những bộ trang phục thường có họa tiết hoa văn, chất liệu vải nhẹ nhàng như vải lanh, và các món phụ kiện như mũ, giày bệt. Phong cách này tôn vinh vẻ đẹp của sự giản dị và bình yên trong cuộc sống, phù hợp với những ai yêu thích sự hòa hợp với thiên nhiên.",
+      "image": "Cottagecore.jpg"
+    },
+    {
+      "name": "Chinese Hanfu Fashion Style",
+      "slug": "chinese-hanfu-fashion-style",
+      "description": "Phong cách Hanfu đại diện cho tinh hoa văn hóa Trung Hoa truyền thống, với trang phục lấy cảm hứng từ các triều đại như Hán, Đường, Tống, Minh. Hanfu thường có thiết kế tay áo rộng, cổ chữ V, thân áo dài và xếp lớp tinh tế. Chất liệu lụa cao cấp, thêu hoa văn cổ điển như mây, rồng, phượng, sen thể hiện sự trang nhã và thanh tao. Người mặc thường kết hợp cùng phụ kiện như trâm cài tóc, quạt tay, khăn lụa để tôn lên vẻ đẹp thanh lịch, hoài cổ. Hanfu không chỉ là trang phục mà còn là biểu tượng của lòng tự hào văn hóa và tinh thần thẩm mỹ sâu sắc.",
+      "image": "Chinese .jpg"
+    },
+    {
+      "name": "Brazilian Carnival Fashion Style",
+      "slug": "brazilian-carnival-fashion-style",
+      "description": "Phong cách thời trang lễ hội Carnival của Brazil là sự bùng nổ của sắc màu, ánh sáng và năng lượng. Đặc trưng với các bộ trang phục táo bạo, sử dụng chất liệu ánh kim, kim tuyến, lông vũ, và đá đính lấp lánh. Những bộ cánh này thường được thiết kế tôn dáng tối đa, thể hiện vẻ đẹp hình thể và tinh thần sống hết mình. Màu sắc chủ đạo là đỏ, vàng, xanh ngọc và tím, cùng các họa tiết nhiệt đới, hoa lá, mặt trời… Phong cách này thể hiện sự vui tươi, giải phóng năng lượng cơ thể và tinh thần tự do phóng khoáng của người Nam Mỹ.",
+      "image": "Brazilian.jpg"
+    },
+    {
+      "name": "Boho Chic Fashion Style",
+      "slug": "boho-chic-fashion-style",
+      "description": "Boho Chic là sự pha trộn giữa phong cách bohemian phóng khoáng và nét hiện đại tinh tế. Trang phục thường sử dụng vải tự nhiên như cotton, linen, ren với họa tiết hoa nhí, tribal, paisley. Đặc trưng với váy maxi, áo trễ vai, tua rua, layer phụ kiện vòng cổ, vòng tay, mũ rộng vành, túi da tua rua. Phong cách này truyền tải thông điệp về sự tự do cá nhân, gần gũi với thiên nhiên và nghệ thuật sống hòa hợp với bản thân. Boho Chic rất được ưa chuộng trong các lễ hội âm nhạc, thời trang mùa hè, hay không gian du mục.",
+      "image": "BohoChic.jpg"
+    },
+    {
+      "name": "Biker Fashion Style",
+      "slug": "biker-fashion-style",
+      "description": "Phong cách Biker gắn liền với hình ảnh người lái mô tô mạnh mẽ và nổi loạn. Đặc trưng là áo khoác da, áo tank-top, quần jeans rách, boots nặng và kính râm. Tông màu chủ đạo là đen, xám, bạc kim loại. Các chi tiết như khóa kéo, đinh tán, dây xích kim loại tạo nên vẻ ngoài gai góc, cá tính. Phong cách này thể hiện sự phản kháng, tự do và sức mạnh cá nhân. Biker không chỉ là một phong cách mà còn là một lối sống gắn liền với sự phiêu lưu và khát vọng vượt thoát mọi giới hạn.",
+      "image": "Biker.jpg"
+    },
+    {
+      "name": "African Tribal Fashion Style",
+      "slug": "african-tribal-fashion-style",
+      "description": "Phong cách African Tribal mang đậm bản sắc văn hóa bộ lạc châu Phi. Trang phục thường sử dụng các loại vải truyền thống như Ankara, Kente, Dashiki với họa tiết hình học, họa tiết động vật, màu sắc tươi sáng và tương phản mạnh. Phụ kiện đi kèm thường là vòng tay, vòng cổ to bản, băng đô, hoa tai làm từ gỗ, đá tự nhiên hoặc kim loại đồng. Đây là phong cách thể hiện niềm tự hào dân tộc, tính cộng đồng và kết nối với cội nguồn. Nó cũng là cách người trẻ thể hiện cá tính và sự trân trọng giá trị di sản qua thời trang hiện đại.",
+      "image": "AfricanTribal.jpg"
+    }
+  ]
