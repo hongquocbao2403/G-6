@@ -8,7 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* Hiệu ứng fade out cho thông báo */
         @keyframes fadeOut {
             from { opacity: 1; }
             to { opacity: 0; display: none; }
@@ -29,84 +28,64 @@
         </script>
     @endif
 
-    <!-- Main container -->
     <div class="flex min-h-screen">
 
         <!-- Sidebar -->
-        <div class="w-64 bg-indigo-800 text-white p-6 flex flex-col justify-between transition-all duration-300 ease-in-out" id="sidebar">
+        <div class="w-64 bg-indigo-800 text-white p-6 flex flex-col justify-between" id="sidebar">
             <div>
                 <h2 class="text-3xl font-semibold mb-8 text-center">Admin</h2>
                 <ul class="space-y-4">
-                    <li>
-                        <a href="{{ route('admin.dashboard') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-tachometer-alt mr-3"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.users.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-users mr-3"></i> Quản lý người dùng
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.posts.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-file-alt mr-3"></i> Quản lý bài đăng
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng ký VIP
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.styles.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700 transition">
-                            <i class="fas fa-palette mr-3"></i> Quản lý Phong Cách
-                        </a>
-                    </li>
+                    <li><a href="{{ route('admin.dashboard') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700"><i class="fas fa-tachometer-alt mr-3"></i> Dashboard</a></li>
+                    <li><a href="{{ route('admin.users.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700"><i class="fas fa-users mr-3"></i> Quản lý người dùng</a></li>
+                    <li><a href="{{ route('admin.posts.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700"><i class="fas fa-file-alt mr-3"></i> Quản lý bài đăng</a></li>
+                    <li><a href="{{ route('admin.subscriptions.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700"><i class="fas fa-dollar-sign mr-3"></i> Quản lý Đăng ký VIP</a></li>
+                    <li><a href="{{ route('admin.styles.index') }}" class="flex items-center py-3 px-4 rounded-lg hover:bg-indigo-700"><i class="fas fa-palette mr-3"></i> Quản lý Phong Cách</a></li>
                 </ul>
             </div>
-            <div>
-                <!-- Logout button -->
-                <form id="logout" action="{{ route('logout') }}" method="POST" class="mt-8">
-                    @csrf
-                    <button type="submit" class="block w-full py-3 px-4 text-red-500 bg-transparent hover:bg-red-100 rounded-lg text-center font-semibold transition">
-                        <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
-                    </button>
-                </form>
-            </div>
+            <form id="logout" action="{{ route('logout') }}" method="POST" class="mt-8">
+                @csrf
+                <button type="submit" class="block w-full py-3 px-4 text-red-500 bg-transparent hover:bg-red-100 rounded-lg text-center font-semibold">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                </button>
+            </form>
         </div>
 
-
-        <!-- Main content -->
+        <!-- Main Content -->
         <div class="flex-1 p-8">
-            <h1 class="text-3xl font-bold mb-6">Thống Kê Quản Lý</h1>
+            <!-- Thống kê Quản Lý -->
+            <h1 class="text-3xl font-bold mb-6 text-gray-800">Thống Kê Quản Lý</h1>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Thống kê Người Dùng -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Người Dùng</h2>
-                    <p class="text-4xl font-bold text-indigo-600">{{ $userCount }}</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Người Dùng -->
+                <div class="bg-gradient-to-br from-blue-100 to-blue-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center">
+                    <i class="fas fa-users text-4xl text-blue-700 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Người Dùng</h3>
+                    <p class="text-3xl font-bold text-blue-800 mt-1">{{ $userCount }}</p>
                 </div>
 
-                <!-- Thống kê Bài Đăng -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Bài Đăng</h2>
-                    <p class="text-4xl font-bold text-indigo-600">{{ $postCount }}</p>
+                <!-- Bài Đăng -->
+                <div class="bg-gradient-to-br from-purple-100 to-purple-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center">
+                    <i class="fas fa-file-alt text-4xl text-purple-700 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Bài Đăng</h3>
+                    <p class="text-3xl font-bold text-purple-800 mt-1">{{ $postCount }}</p>
                 </div>
 
-                <!-- Thống kê Gói VIP -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <h2 class="text-2xl font-semibold text-indigo-800">Số Lượng Gói VIP</h2>
-                    <p class="text-4xl font-bold text-indigo-600">{{ $subscriptionCount }}</p>
+                <!-- Gói VIP -->
+                <div class="bg-gradient-to-br from-yellow-100 to-yellow-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center">
+                    <i class="fas fa-crown text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Gói VIP</h3>
+                    <p class="text-3xl font-bold text-yellow-700 mt-1">{{ $subscriptionCount }}</p>
                 </div>
 
-                <!-- Thống kê Phong Cách -->
-                <div class="bg-white p-6 rounded-lg shadow text-center md:col-span-1">
-                    <h2 class="text-xl font-semibold text-indigo-800 mb-2">Số Lượng Phong Cách</h2>
-                    <p class="text-3xl font-bold text-indigo-600">{{ $styleCount }}</p>
+                <!-- Phong Cách -->
+                <div class="bg-gradient-to-br from-pink-100 to-pink-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center">
+                    <i class="fas fa-palette text-4xl text-pink-600 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Phong Cách</h3>
+                    <p class="text-3xl font-bold text-pink-700 mt-1">{{ $styleCount }}</p>
                 </div>
             </div>
 
-            <!-- Recent Activities -->
+            <!-- Hoạt động gần đây -->
             <div class="mt-10">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-800">Hoạt Động Gần Đây</h2>
                 <div class="bg-white shadow-md rounded-lg overflow-hidden">
@@ -140,30 +119,20 @@
     </div>
 
     <script>
-        // Toggle Sidebar (nếu có nút toggle)
-        const toggleBtn = document.getElementById("toggle-sidebar");
-        if (toggleBtn) {
-            toggleBtn.addEventListener("click", function() {
-                document.getElementById("sidebar").classList.toggle("w-64");
-                document.getElementById("sidebar").classList.toggle("w-16");
+        $('#logout').on('submit', function(event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function() {
+                    window.location.href = "{{ url('http://127.0.0.1:8000') }}";
+                },
+                error: function() {
+                    alert('Đăng xuất thất bại. Vui lòng thử lại.');
+                }
             });
-        }
-    </script>
-    <script>
-    $('#logout').on('submit', function(event) {
-        event.preventDefault(); // Ngăn hành động submit mặc định
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-            success: function() {
-                window.location.href = "http://127.0.0.1:8000"; // Redirect về trang chủ
-            },
-            error: function() {
-                alert('Đăng xuất thất bại. Vui lòng thử lại.');
-            }
         });
-    });
     </script>
 </body>
 </html>

@@ -17,7 +17,7 @@ use App\Http\Controllers\PredictionController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\VipController;
-
+use App\Http\Controllers\StylePublicController;
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -272,3 +272,10 @@ Route::get('/vip', [VipController::class, 'index'])->name('vip.index');
 Route::post('/vip/subscribe/{id}', [VipController::class, 'subscribe'])->name('vip.subscribe');
 //Tìm kiếm
 Route::get('/style/{slug}', [StyleController::class, 'show'])->name('style.show');
+//Bộ sưu tập
+Route::get('/styles', [StylePublicController::class, 'index'])->name('styles.public.index');
+// routes/web.php
+Route::post('/styles/{id}/like', [StylePublicController::class, 'like'])->name('style.like');
+Route::post('/styles/{id}/view', [StylePublicController::class, 'view'])->name('style.view');
+
+

@@ -176,6 +176,8 @@
     <a href="{{ route('user.posts.index') }}" class="nav-btn">
         <i class="fas fa-pen-to-square"></i> Blog
     </a>
+    <a href="{{ route('vip.index') }}" class="nav-btn"><i class="fas fa-crown"></i> Đăng ký VIP</a>
+    <a href="{{ route('styles.public.index') }}" class="nav-btn"><i class="fas fa-shirt"></i> Bộ sưu tập</a>
     <a href="{{ route('user.profile') }}" class="nav-btn">
         <i class="fas fa-user"></i> Hồ sơ
     </a>

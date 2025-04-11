@@ -252,6 +252,7 @@
       <a href="{{ route('upload.image') }}" class="icon-button"><i class="fas fa-search"></i> Dự đoán</a>
       <a href="{{ route('user.posts.index') }}" class="icon-button"><i class="fas fa-pen-to-square"></i> Blog</a>
       <a href="{{ route('vip.index') }}" class="icon-button"><i class="fas fa-crown"></i> Đăng ký VIP</a>
+      <a href="{{ route('styles.public.index') }}" class="icon-button"><i class="fas fa-shirt"></i> Bộ sưu tập</a>
       <div class="dropdown">
         <a href="{{ route('user.profile') }}" class="icon-button"><i class="fas fa-user"></i> Hồ sơ</a>
       </div>
@@ -298,7 +299,7 @@
         </ul>
       </div>
       <div>
-        <h4>Theo dõi</h4>
+        <h4>Theo dõi chúng tôi</h4>
         <div class="socials">
           <a href="https://facebook.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/32/733/733547.png" alt="Facebook"></a>
           <a href="https://instagram.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/32/2111/2111463.png" alt="Instagram"></a>

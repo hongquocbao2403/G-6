@@ -206,6 +206,7 @@
       <a href="{{ route('upload.image') }}" class="enhanced-btn"><i class="fas fa-magnifying-glass"></i> Dự đoán</a>
       <a href="{{ route('user.posts.index') }}" class="enhanced-btn"><i class="fas fa-pen-to-square"></i> Blog</a>
       <a href="{{ route('vip.index') }}" class="enhanced-btn"><i class="fas fa-crown"></i> Đăng ký VIP</a>
+      <a href="{{ route('styles.public.index') }}" class="enhanced-btn"><i class="fas fa-shirt"></i> Bộ sưu tập</a>
       <div class="dropdown">
         <a href="{{ route('user.profile') }}" class="enhanced-btn"><i class="fas fa-user"></i> Hồ sơ</a>
       </div>
